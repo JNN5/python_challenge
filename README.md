@@ -9,7 +9,7 @@
   - color
   - weight in grams
 ### Given
-- bags of various colors and sizes
+- bags of various colors and weights
 ### When
 - a user submits bag data
 ### Then
