@@ -62,13 +62,20 @@ __pycache__/
 .pytest_cache
 
 # removed all dependecy and zip inside a lambda/*/
-lambda/diva*/*/
-lambda/diva*/six.py
-lambda/diva*/*.so
-lambda/diva*/.~c9_invoke*
-lambda/layer_*/python/.~c9_invoke*
-lambda/*.zip
-lambda/*/typing_extensions.py
+src/diva*/*/
+!src/diva*/cdk/
+src/diva*/six.py
+src/diva*/*.so
+src/diva*/.~c9_invoke*
+src/layer_*/python/.~c9_invoke*
+src/layer_lib/python/*/
+src/layer_lib/python/six.py
+src/layer_lib/python/typing_extensions.py
+src/layer_lib/python/THIRD-PARTY-LICENSES
+src/*.zip
+src/*/typing_extensions.py
+
+cdk.out
 
 .coverage
 
@@ -83,3 +90,6 @@ yarn.lock
 # Venv files
 pyvenv.cfg
 Scripts/
+env/
+!terraform/env
+.venv

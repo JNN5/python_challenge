@@ -1,0 +1,13 @@
+[run]
+omit =
+    # ignore all test cases in tests/
+    /*/test_*
+    # omit conftest.py
+    *conftest.py*
+
+[coverage:report]
+skip_empty = true
+
+[html]
+directory = coverage_html_report/
+

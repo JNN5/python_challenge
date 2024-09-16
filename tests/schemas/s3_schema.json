@@ -1,0 +1,16 @@
+{
+    "schemas": [
+        {
+            "BucketName": "diva-rrt-event"
+        },
+        {
+            "BucketName": "diva-rrt-staff"
+        },
+        {
+            "BucketName": "diva-rrt-responsys-archive"
+        },
+        {
+            "BucketName": "diva-rrt-bookings"
+        }
+    ]
+}

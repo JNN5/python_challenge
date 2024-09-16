@@ -1,0 +1,22 @@
+{
+    "user_list": [{
+        "id": "CAG_ADMIN",
+        "username": "dc1dd9cf-45c4-4813-9409-dc13d5e6bad9",
+        "group_name": "admin",
+        "attributes": [
+            {"Name": "email", "Value": "cag.admin@changiairport.com"},
+            {"Name": "custom:Company", "Value": "CAG"},
+            {"Name": "custom:Name", "Value": "CAG Admin"}
+        ]
+    },{
+        "id": "CAG_SUPERVISOR",
+        "username": "3d152dd8-5567-430e-80e5-8fc40a2afb66",
+        "group_name": "supervisor",
+        "attributes": [
+            {"Name": "email", "Value": "cag.supervisor@changiairport.com"},
+            {"Name": "custom:Company", "Value": "CAG"},
+            {"Name": "custom:Name", "Value": "CAG Supervisor"}
+        ]
+    }],
+    "group_list": ["supervisor", "admin"]
+}

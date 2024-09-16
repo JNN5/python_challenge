@@ -1,35 +1,14 @@
-# -*- coding: utf-8 -*-
-from dataclasses import dataclass
-import os
-import datetime
-
-# We need to import the directory into the path for pytest to find the other files in the directory
-import sys
-from typing import Optional
-
-sys.path.append(os.path.dirname(os.path.realpath(__file__)))
-
 from api_response_handler import api_response_handler
-from booking_input import BookingInput
+from .booking_input import BookingInput
 from aws_lambda_powertools import Logger, Tracer
 from aws_lambda_powertools.logging.correlation_paths import API_GATEWAY_REST
 
 from request_validation import parse_event
-from util_helper import clean_data_fields, decrypt_data
-from models.booking import Booking
-
-# Initialize env vars
-CORS = os.environ["CORS"].strip()
+from util_helper import clean_data_fields
+from models.example_booking import Booking
 
 log = Logger()
 tracer = Tracer()
-
-@dataclass
-class BookingInput:
-    company: Optional[str]
-    start_of_week: Optional[str]
-    location: Optional[str]
-    capsule_id: Optional[str]
 
 
 @tracer.capture_lambda_handler
@@ -59,13 +38,12 @@ def find_relevant_bookings(booking_input: BookingInput) -> list[Booking]:
 
 def map_to_output(bookings: list[Booking]) -> list[dict]:
     booking_keys = ["company", "location", "capsule_id", "activity_date", "nric_sha"]
-    fields_to_decrypt = ["nric_sha"]
 
     output = []
     for booking in bookings:
         booking_dict = booking.attribute_values
         clean_data_fields(booking_dict, booking_keys)
-        decrypt_data(booking_dict, fields_to_decrypt)
+        booking.decrypt()
         output.append(booking_dict)
 
     return output

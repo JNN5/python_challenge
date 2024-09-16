@@ -24,3 +24,6 @@ SAMPLE_STATUS_INACTIVE = 'Inactive'
 ########## Cognito User Groups ##########
 COGNITO_ADMIN = 'admin'
 COGNITO_SUPERVISOR = 'supervisor'
+
+from zoneinfo import ZoneInfo
+LOCAL_TIMEZONE = ZoneInfo("Asia/Singapore")

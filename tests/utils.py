@@ -25,9 +25,18 @@ def load_file_raw(filename: str):
         file_content = file.read()
     return file_content
 
+def create_test_request(request_body: dict[str, any], header_auth: str = "") -> dict[str, str]:
+    request = {
+        "body": json.dumps(request_body),
+    }
+    if header_auth:
+        request["headers"] = {
+            "Authorization": header_auth
+        }
+    return request
 
-test_case = TestCase()
-test_case.max_diff = None
+t = TestCase()
+t.maxDiff = None
 
 @dataclass
 class MockResponse:

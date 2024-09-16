@@ -16,6 +16,11 @@
 - the bag data (as defined in context) is saved to DynamoDB
 
 ## Hints
-- please prepare to walk through your code
+- Start by creating a python virtual environment (python3 -m venv .venv && source .venv/bin/activate)
+- Install all packages (pip install -r requirements.txt)
+- You can run the tests with this command: python -m pytest tests/
+- The repo uses a wrapper package to interact with DynamoDB called pynamodb. An example of a pynamo model can be found under src/layer_diva/python/models/example_booking.py
 - we want to be able to verify your code works
-- your code will run in a lambda function that is triggered by an API gateway (just like the getBookings example)
+- your code will run in a lambda function that is triggered by an API gateway (just like the example_get_request under src/functions/lambda_function.py)
+
+- please prepare to walk through your code

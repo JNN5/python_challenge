@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import logging
 import os
 import boto3
@@ -88,9 +87,9 @@ class Cognito:
     
     def _flatten(self, user):
         flattened_user = {}
-        for key, value in user.items():
-            if key != 'Attributes':
-                flattened_user[key] = value
+        for k, value in user.items():
+            if k != 'Attributes':
+                flattened_user[k] = value
         
         for name_value_pair in user.get('Attributes', []):
             flattened_user[name_value_pair['Name']] = name_value_pair['Value']
@@ -115,10 +114,10 @@ class Cognito:
                 'Value': email
             }
         ]
-        for key in attributes:
+        for k in attributes:
             user_attributes.append({
-                'Name': 'custom:' + key,
-                'Value': attributes[key]
+                'Name': 'custom:' + k,
+                'Value': attributes[k]
             })
             
         COGNITO.admin_create_user(

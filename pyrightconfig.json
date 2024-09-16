@@ -1,0 +1,18 @@
+{
+    "include": [
+      "src"
+    ],
+  
+    "exclude": [
+      "**/node_modules",
+      "**/__pycache__",
+      "src/experimental",
+      "src/typestubs",
+      ".pytest_cache",
+      "**/.venv",
+      "**/.vscode",
+      "**/.cdk.out",
+      "**/code_test",
+      "**/layer_lib"
+    ]
+}

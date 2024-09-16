@@ -1,16 +1,14 @@
 from dataclasses import Field, dataclass, fields
-import os
 import re
 import datetime
-import hashlib
 import boto3
 import json
 from api_response_handler import BadRequest
-
-import util_constants, util_helper
+from aws_lambda_powertools import Logger
+import util_constants
 
 # LOGGER
-log = util_helper.get_logger()
+log = Logger()
 
 COGNITO_CLIENT = boto3.client("cognito-idp")
 SSM = boto3.client("ssm")
@@ -32,14 +30,14 @@ def get_regex_dict():
         "contact_num": r"^[6,8,9][0-9]{7}$",
     }
 
-    for key, value in regex_dict.items():
+    for k, value in regex_dict.items():
         if (
             value != "NA"
             and value != util_constants.LIST_REGEX
             and value != util_constants.OBJECT_REGEX
             and value != util_constants.OBJECT_LIST_REGEX
         ):
-            regex_dict[key] = re.compile(value, re.IGNORECASE)
+            regex_dict[k] = re.compile(value, re.IGNORECASE)
 
     return regex_dict
 
@@ -302,7 +300,10 @@ def _generate_sec_header(cors=None):
 
 
 def parse_event(event: dict, clazz: dataclass):
-    body = _parse_event_body(event)
+    if event.get("body"):
+        body = _parse_event_body(event)
+    else:
+        body = event
     required_fields = _get_required_class_fields(clazz)
     all_fields = _get_all_class_fields(clazz)
     if not all(elem in list(body.keys()) for elem in required_fields):
